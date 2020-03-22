@@ -1,0 +1,37 @@
+
+
+plugins {
+    // Apply the java plugin to add support for Java
+    id 'java'
+
+    // Apply the application plugin to add support for building a CLI application
+    id 'application'
+
+    id 'jacoco'
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    // This dependency is used by the application.
+    implementation 'com.google.guava:guava:28.0-jre'
+
+    // Use JUnit test framework
+    testImplementation 'junit:junit:4.12'
+
+    
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.13.0'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.13.0'
+    testCompile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.1'
+
+    // https://mvnrepository.com/artifact/org.lwjgl/lwjgl
+    compile group: 'org.lwjgl', name: 'lwjgl', version: '3.2.1'
+}
+
+application {
+    // Define the main class for the application
+    mainClassName = 'app.App'
+}
