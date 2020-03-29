@@ -105,6 +105,11 @@ dependencies {
 	runtimeOnly "org.lwjgl:lwjgl-zstd::$lwjglNatives"
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_12
+    targetCompatibility = JavaVersion.VERSION_12
+}
+
 application {
     // Define the main class for the application
     mainClassName = 'machination.app.App'
