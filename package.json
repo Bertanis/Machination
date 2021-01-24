@@ -1,0 +1,22 @@
+{
+  "name": "machination",
+  "version": "1.0.0",
+  "description": "A D&D ver. 4e combat manager",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ResQyuu/Machination.git"
+  },
+  "author": "ResQyuu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/ResQyuu/Machination/issues"
+  },
+  "homepage": "https://github.com/ResQyuu/Machination#readme",
+  "devDependencies": {
+    "electron": "^11.1.1"
+  }
+}
