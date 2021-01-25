@@ -6,15 +6,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'" />
-    <link rel="stylesheet" href="css/all.min.css" />
+    <script src="libs/popper.min.js"></script>
+    <script src="libs/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="libs/materialize.min.js"></script>
+    <script src="libs/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
+
     <title>Machination</title>
 </head>
 
 <body>
     <div class="container center-aligned">
-        <h3><i class="fas fa-images"></i> Machination</h3>
+        <h3>Machination</h3>
+    </div>
+    <div class="container left-aligned">
+        <h3>Chat interface</h3>
+        <div class="container" id="chat_console"></div>
     </div>
 </body>
 
