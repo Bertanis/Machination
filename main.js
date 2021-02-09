@@ -22,6 +22,7 @@ function createMainWindow() {
     })
 
     mainWindow.loadFile('./app/index.html')
+    mainWindow.maximize()
 }
 
 function createAboutWindow() {

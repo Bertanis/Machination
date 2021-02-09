@@ -6,25 +6,59 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline'" />
-    <script src="libs/popper.min.js"></script>
-    <script src="libs/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="libs/materialize.min.js"></script>
-    <script src="libs/jquery-3.5.1.min.js"></script>
+    <script src="js/libs/popper.min.js"></script>
+    <script src="js/libs/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="js/libs/materialize.min.js"></script>
     <link rel="stylesheet" href="css/materialize.min.css" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     <title>Machination</title>
+
+    <!-- Setup libraries -->
+    <script type="text/javascript">
+        window.remote = require('electron').remote;
+        const os = require('os');
+        const $ = jquery = require('jquery');
+    </script>
+
+    <!-- Load client scripts -->
+    <script src="js/map.js"></script>
+
+    <!-- Setup onload functionality -->
+    <script type="text/javascript">
+        window.onload = () => {
+            setupCanvas()
+        }
+    </script>
 </head>
 
 <body>
-    <div class="container center-aligned">
-        <h3>Machination</h3>
+    <div class="container-fluid p-0">
+        <div class="row bg-primary text-white m-0">
+            <div class="col-1">Icon</div>
+            <div class="col-2">Toolbar</div>
+            <div class="col-8">Empty Space</div>
+            <div class="col-1">Min/Close</div>
+        </div>
+        <div class="row m-0">
+            <div class="col-1 border">
+                <div class="row border">Menu</div>
+                <div class="row border" id="chat_interface">
+                    <div class="border">
+                        Chat
+                    </div>
+                    <div class="border">
+                        Message
+                    </div>
+                </div>
+            </div>
+            <div class="col-11 border" id="map_container">
+                <canvas id="map_canvas" height=100% width=100%></canvas>
+            </div>
+        </div>
     </div>
-    <div class="container left-aligned">
-        <h3>Chat interface</h3>
-        <div class="container" id="chat_console"></div>
-    </div>
+
 </body>
 
 </html>
