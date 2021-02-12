@@ -14,7 +14,8 @@ function createMainWindow() {
         height: 900,
         width: 800,
         webPreferences: {
-            nodeIntegration: true
+            nodeIntegration: true,
+            enableRemoteModule: true
         },
         contextIsolation: true,
         resizable: isDev ? true : false,
@@ -22,6 +23,7 @@ function createMainWindow() {
     })
 
     mainWindow.loadFile('./app/index.html')
+    mainWindow.maximize()
 }
 
 function createAboutWindow() {

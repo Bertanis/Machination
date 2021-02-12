@@ -1,0 +1,103 @@
+body, table, tr, td, tbody, canvas {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    height:100vh
+}
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.header {
+    width: 100%;
+    height: 32px;
+    background-color: #aaaaaa;
+}
+
+.header * {
+    font-family: sans-serif;
+}
+
+.icon {
+    width: 32px;
+    height: 32px;
+    padding-left: 5px;
+}
+
+.toolbar {
+    width: 100%;
+    padding-left: 20px;
+}
+
+.controls {
+    width: 500px;
+    padding-right: 10px;
+}
+
+.controls button {
+    padding-left: 10px;
+    font-family: sans-serif;
+    font-weight: bold;
+    color: #eeeeee;
+    border: none;
+    background-color: transparent;
+}
+
+.controls button:hover {
+    background-color: #eee;
+    color: #000
+}
+
+.main-table {
+    display:table;
+    height:100%;
+    width:100%;
+    table-layout: inherit;
+}
+
+.main {
+    width: 100%;
+    background-color: #888;
+}
+
+.side-options {
+    width: 64px;
+}
+
+.sidebar {
+    width: 200px;
+    height: 100%;
+    background-color: #555;
+    vertical-align: top;
+}
+
+.sidebar * {
+    color: #EEE;
+    font-family: sans-serif;
+}
+
+.menu {
+    border: 2px black solid; 
+}
+
+.chat {
+
+}
+
+.map {
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+}
+
+#map_canvas {
+    display:block;
+    height: 100%;
+    width: 100%;
+    padding: 0px;
+    margin:auto;
+}
