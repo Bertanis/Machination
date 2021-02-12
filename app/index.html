@@ -10,51 +10,64 @@
     <script src="js/libs/bootstrap.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+    <link rel="stylesheet" href="css/style.css" />
+
     <title>Machination</title>
 
     <!-- Setup libraries -->
     <script type="text/javascript">
-        window.remote = require('electron').remote;
+        const remote = require('electron').remote;
         const os = require('os');
         const $ = jquery = require('jquery');
     </script>
 
     <!-- Load client scripts -->
     <script src="js/map.js"></script>
+    <script src="js/controls.js"></script>
 
     <!-- Setup onload functionality -->
     <script type="text/javascript">
         window.onload = () => {
             setupCanvas()
+            ControlUtils.setupWindowControls()
         }
     </script>
 </head>
 
 <body>
-    <div class="container-fluid p-0">
-        <div class="row bg-primary text-white m-0">
-            <div class="col-1">Icon</div>
-            <div class="col-2">Toolbar</div>
-            <div class="col-8">Empty Space</div>
-            <div class="col-1">Min/Close</div>
-        </div>
-        <div class="row m-0">
-            <div class="col-1 border">
-                <div class="row border">Menu</div>
-                <div class="row border" id="chat_interface">
-                    <div class="border">
+    <table>
+        <tr class="header">
+            <td class="icon">Icon</td>
+            <td class="toolbar"></td>
+            <td class="controls">
+                <table>
+                    <tr>
+                        <td><button id="minimize_button">_</button></td>
+                        <td><button id="maximize_button">☐</button></td>
+                        <td><button id="close_button">X</button></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+    <table class="main-table">
+        <tr class="main">
+            <td class="side-options">
+
+            </td>
+            <td class="sidebar">
+                <div class="menu">Menu</div>
+                <div class="" id="chat_interface">
+                    <div class="chat">
                         Chat
                     </div>
-                    <div class="border">
-                        Message
-                    </div>
                 </div>
-            </div>
-            <div class="col-11 border" id="map_container">
-                <canvas id="map_canvas" height=100% width=100%></canvas>
-            </div>
-        </div>
-    </div>
+            </td>
+            <td class="" id="map">
+                <canvas class="border" id="map_canvas"></canvas>
+            </td>
+        </tr>
+    </table>
 
 </body>
 
