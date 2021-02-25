@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="css/style.css" />
-
+    <link rel="stylesheet" href="css/menu.css" />
     <title>Machination</title>
 
     <!-- Setup libraries -->
@@ -30,6 +30,9 @@
         window.onload = () => {
             setupCanvas()
             ControlUtils.setupWindowControls()
+            ControlUtils.addSideMenuButton('./assets/menu/chara-64.png', 'characers', event => {
+                console.log("Clicked character editor button")
+            })
         }
     </script>
 </head>
@@ -52,10 +55,10 @@
     </table>
     <table class="main-table">
         <tr class="main">
-            <td class="side-options">
+            <td class="selectors">
 
             </td>
-            <td class="sidebar">
+            <td class="menus">
                 <div class="menu">Menu</div>
                 <div class="" id="chat_interface">
                     <div class="chat">

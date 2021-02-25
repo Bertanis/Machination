@@ -64,28 +64,16 @@ table {
     background-color: #888;
 }
 
-.side-options {
-    width: 64px;
-}
-
-.sidebar {
+.menus {
     width: 200px;
     height: 100%;
     background-color: #555;
     vertical-align: top;
 }
 
-.sidebar * {
+.menus * {
     color: #EEE;
     font-family: sans-serif;
-}
-
-.menu {
-    border: 2px black solid; 
-}
-
-.chat {
-
 }
 
 .map {
