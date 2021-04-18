@@ -22,13 +22,10 @@
     </script>
 
     <!-- Load client scripts -->
-    <script src="js/map.js"></script>
-    <script src="js/controls.js"></script>
 
     <!-- Setup onload functionality -->
     <script type="text/javascript">
         window.onload = () => {
-            setupCanvas()
             ControlUtils.setupWindowControls()
             ControlUtils.addSideMenuButton('./assets/menu/chara-64.png', 'characers', event => {
                 console.log("Clicked character editor button")
@@ -67,10 +64,16 @@
                 </div>
             </td>
             <td class="" id="map">
-                <canvas class="border" id="map_canvas"></canvas>
+                <canvas class="border" id="map_canvas" height=512px width=512px></canvas>
             </td>
         </tr>
     </table>
+
+    <script src="js/controls.js"></script>
+    <script src="js/map/image.js"></script>
+    <script src="js/map/keyboard.js"></script>
+    <script src="js/map/game.js"></script>
+    <script src="js/map/map.js"></script>
 
 </body>
 
