@@ -11,10 +11,18 @@ Game.run = function (context) {
     }.bind(this));
 }
 
+var shouldLog = true;
+
 Game.tick = function (elapsed) {
     window.requestAnimationFrame(this.tick);
+    var width = $('#map_canvas').width();
+    var height = $('#map_canvas').height();
+    if (shouldLog) {
+        console.log(`(${width},${height})`);
+        shouldLog = false;
+    }
 
-    this.ctx.clearRect(0, 0, 512, 512);
+    this.ctx.clearRect(0, 0, width, height);
 
     var delta = (elapsed - this._previousElapsed) / 1000.0;
     delta = Math.min(delta, 0.25);

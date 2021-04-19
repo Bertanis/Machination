@@ -18,7 +18,6 @@ var map = {
 };
 
 Game.load = function () {
-    console.log("got here");
     return [
         Loader.loadImage('tiles', './assets/tilesets/test_set.png')
     ];

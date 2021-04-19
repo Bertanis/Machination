@@ -21,3 +21,8 @@ const ControlUtils = {
         $('.selectors').append(button)
     }
 }
+
+ControlUtils.setupWindowControls()
+ControlUtils.addSideMenuButton('./assets/menu/chara-64.png', 'characers', event => {
+    console.log("Clicked character editor button")
+})
