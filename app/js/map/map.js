@@ -1,25 +1,47 @@
 var map = {
-    cols: 8,
-    rows: 8,
+    size: 5,
     tsize: 64,
-    tiles: [
-        1, 3, 3, 3, 1, 1, 3, 1,
-        1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 1, 1, 2, 1, 1,
-        1, 1, 1, 1, 1, 1, 1, 1,
-        1, 1, 1, 2, 1, 1, 1, 1,
-        1, 1, 1, 1, 2, 1, 1, 1,
-        1, 1, 1, 1, 2, 1, 1, 1,
-        1, 1, 1, 1, 2, 1, 1, 1
-    ],
+    tiles: [],
+    resize(newSize) {
+        this.size = newSize + 1;
+        $('#map_canvas').attr('width', map.getWidth()).attr('height', map.getHeight());
+        this._generateGridTiles();
+    },
     getTile: function (col, row) {
-        return this.tiles[row * map.cols + col];
+        return this.tiles[row * map.size + col];
+    },
+    getWidth: function () {
+        return this.size * this.tsize;
+    },
+    getHeight: function () {
+        return this.size * this.tsize;
+    },
+    _generateGridTiles: function () {
+        this.tiles = [];
+        for (var r = 0; r < map.size; r++) {
+            for (var c = 0; c < map.size; c++) {
+                if (r < map.size - 1) {
+                    if (c < map.size - 1) {
+                        this.tiles.push(1);
+                    } else {
+                        this.tiles.push(2);
+                    }
+                } else {
+                    if (c < map.size - 1) {
+                        this.tiles.push(3);
+                    } else {
+                        this.tiles.push(0);
+                    }
+                }
+            }
+        }
     }
 };
+map.resize(15);
 
 Game.load = function () {
     return [
-        Loader.loadImage('tiles', './assets/tilesets/test_set.png')
+        Loader.loadImage('tiles', './assets/tilesets/grid_tiles.png')
     ];
 };
 
@@ -31,9 +53,17 @@ Game.update = function (delta) {
 
 };
 
+Game.drawBaseGrid = function () {
+
+}
+
+Game.drawLayer = function (zInd) {
+
+}
+
 Game.render = function () {
-    for (var c = 0; c < map.cols; c++) {
-        for (var r = 0; r < map.rows; r++) {
+    for (var c = 0; c < map.size; c++) {
+        for (var r = 0; r < map.size; r++) {
             var tile = map.getTile(c, r);
             if (tile !== 0) {
                 this.ctx.drawImage(
