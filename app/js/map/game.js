@@ -11,8 +11,6 @@ Game.run = function (context) {
     }.bind(this));
 }
 
-var shouldLog = true;
-
 Game.tick = function (elapsed) {
     window.requestAnimationFrame(this.tick);
 
