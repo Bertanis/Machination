@@ -1,4 +1,9 @@
-body, table, tr, td, tbody, canvas {
+:root {
+    --header-height: 32px;
+}
+
+html, body {
+    height: 100%;
     margin: 0px;
     padding: 0px;
 }
@@ -52,52 +57,31 @@ table {
     color: #000
 }
 
-.main-table {
-    display:table;
-    height:100%;
-    width:100%;
-    table-layout: inherit;
+.main-ui {
+    display: flex;
+    flex-flow: row;
+    height: -moz-calc(100% - var(--header-height));
+    height: -webkit-calc(100% - var(--header-height));
+    height: calc(100% - var(--header-height));
 }
 
-.main {
-    width: 100%;
-    background-color: #888;
+.selectors {
+    display: inline-block;
 }
 
-.side-options {
-    width: 64px;
-}
-
-.sidebar {
+.menus {
     width: 200px;
     height: 100%;
     background-color: #555;
     vertical-align: top;
 }
 
-.sidebar * {
+.menus * {
     color: #EEE;
     font-family: sans-serif;
 }
 
-.menu {
-    border: 2px black solid; 
-}
-
-.chat {
-
-}
-
-.map {
-    padding: 0px;
-    height: 100%;
-    width: 100%;
-}
-
 #map_canvas {
-    display:block;
-    height: 100%;
-    width: 100%;
     padding: 0px;
     margin:auto;
 }

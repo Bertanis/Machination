@@ -11,5 +11,18 @@ const ControlUtils = {
         $('#close_button').on('click', () => {
             mainWindow.close();
         })
+    },
+
+    addSideMenuButton: (imageLink, name, click) => {
+        let button = $(`<img id="${name}" />`)
+        button.attr('src', imageLink)
+        button.addClass('menu')
+        button.on('click', click)
+        $('.selectors').append(button)
     }
 }
+
+ControlUtils.setupWindowControls()
+ControlUtils.addSideMenuButton('./assets/menu/chara-64.png', 'characers', event => {
+    console.log("Clicked character editor button")
+})

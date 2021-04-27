@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
     <link rel="stylesheet" href="css/style.css" />
-
+    <link rel="stylesheet" href="css/menu.css" />
     <title>Machination</title>
 
     <!-- Setup libraries -->
@@ -21,17 +21,6 @@
         const $ = jquery = require('jquery');
     </script>
 
-    <!-- Load client scripts -->
-    <script src="js/map.js"></script>
-    <script src="js/controls.js"></script>
-
-    <!-- Setup onload functionality -->
-    <script type="text/javascript">
-        window.onload = () => {
-            setupCanvas()
-            ControlUtils.setupWindowControls()
-        }
-    </script>
 </head>
 
 <body>
@@ -50,24 +39,26 @@
             </td>
         </tr>
     </table>
-    <table class="main-table">
-        <tr class="main">
-            <td class="side-options">
+    <div class="main-ui">
+        <div class="selectors">
 
-            </td>
-            <td class="sidebar">
-                <div class="menu">Menu</div>
-                <div class="" id="chat_interface">
-                    <div class="chat">
-                        Chat
-                    </div>
+        </div>
+        <div class=" menus">
+            <div class="menu">Menu</div>
+            <div id="chat_interface">
+                <div class="chat">
+                    Chat
                 </div>
-            </td>
-            <td class="" id="map">
-                <canvas class="border" id="map_canvas"></canvas>
-            </td>
-        </tr>
-    </table>
+            </div>
+        </div>
+        <canvas id="map_canvas"></canvas>
+    </div>
+
+    <script src="js/controls.js"></script>
+    <script src="js/map/image.js"></script>
+    <script src="js/map/keyboard.js"></script>
+    <script src="js/map/game.js"></script>
+    <script src="js/map/map.js"></script>
 
 </body>
 

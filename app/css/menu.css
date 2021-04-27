@@ -1,0 +1,16 @@
+.selectors {
+    background-color: #777;
+    vertical-align: top;
+    width: 52px;
+    padding: 2px;
+}
+
+img.menu {
+    height: 48px;
+    width: 48px;
+    padding: 8px;
+}
+
+img.menu:hover {
+    background-color: #AAA;
+}
