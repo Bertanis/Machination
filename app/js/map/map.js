@@ -1,15 +1,14 @@
 var map = {
     size: 5,
     tsize: 64,
-    layerPriority: ["grid", "token"],
-    layers: {},
+    grid: [],
     resize(newSize) {
         this.size = newSize + 1;
         $('#map_canvas').attr('width', map.getWidth()).attr('height', map.getHeight());
         this._generateGridTiles();
     },
-    getTile: function (name, col, row) {
-        return this.layers[name][row * map.size + col];
+    getGridTile: function (col, row) {
+        return this.grid[row * map.size + col];
     },
     getWidth: function () {
         return this.size * this.tsize;
@@ -17,51 +16,66 @@ var map = {
     getHeight: function () {
         return this.size * this.tsize;
     },
-    setLayerTiles: function (name, tiles) {
-        this.layers[name] = tiles;
-    },
     _generateGridTiles: function () {
-        var grid = [];
+        this.grid = [];
         for (var r = 0; r < map.size; r++) {
             for (var c = 0; c < map.size; c++) {
                 if (r < map.size - 1) {
                     if (c < map.size - 1) {
-                        grid.push(1);
+                        this.grid.push(1);
                     } else {
-                        grid.push(2);
+                        this.grid.push(2);
                     }
                 } else {
                     if (c < map.size - 1) {
-                        grid.push(3);
+                        this.grid.push(3);
                     } else {
-                        grid.push(0);
+                        this.grid.push(0);
                     }
                 }
             }
         }
-        this.layers["grid"] = grid;
     }
 };
+
+var tokenLayer = {
+    tokens: {},
+    addToken: function (name, index, row, col) {
+        this.tokens[name] = {
+            "index": index,
+            "position": {
+                'row': row,
+                'col': col
+            }
+        };
+    },
+    removeToken: function (name) {
+        this.tokens[name] = null;
+    }
+};
+
 map.resize(15);
 
 Game.load = function () {
     return [
-        Loader.loadImage('tiles', './assets/tilesets/grid_tiles.png')
+        Loader.loadImage('gridTiles', './assets/tilesets/grid_tiles.png'),
+        Loader.loadImage('tokens', './assets/tilesets/test_tokens.png')
     ];
 };
 
 Game.init = function () {
-    this.gridAtlas = Loader.getImage('tiles');
+    this.gridAtlas = Loader.getImage('gridTiles');
+    this.tokenAtlas = Loader.getImage('tokens');
 };
 
 Game.update = function (delta) {
 
 };
 
-Game.drawLayer = function (name) {
+Game.drawGrid = function () {
     for (var c = 0; c < map.size; c++) {
         for (var r = 0; r < map.size; r++) {
-            var tile = map.getTile(name, c, r);
+            var tile = map.getGridTile(c, r);
             if (tile !== 0) {
                 this.ctx.drawImage(
                     this.gridAtlas,
@@ -79,8 +93,24 @@ Game.drawLayer = function (name) {
     }
 }
 
-Game.render = function () {
-    for (var name in map.layers) {
-        this.drawLayer(name);
+Game.drawTokens = function () {
+    for (var tokenName in tokenLayer.tokens) {
+        var token = tokenLayer.tokens[tokenName];
+        this.ctx.drawImage(
+            this.tokenAtlas,
+            (token.index - 1) * map.tsize,
+            0,
+            map.tsize,
+            map.tsize,
+            token.position.col * map.tsize,
+            token.position.row * map.tsize,
+            map.tsize,
+            map.tsize
+        );
     }
+}
+
+Game.render = function () {
+    this.drawGrid();
+    this.drawTokens();
 }
