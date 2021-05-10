@@ -51,6 +51,13 @@ var tokenLayer = {
     },
     removeToken: function (name) {
         delete this.tokens[name];
+    },
+    moveToken: function (name, row, col) {
+        this.tokens[name].position.row = row;
+        this.tokens[name].position.col = col;
+    },
+    changeToken: function (name, index) {
+        this.tokens[name].index = index;
     }
 };
 
