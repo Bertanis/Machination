@@ -1,4 +1,6 @@
-var Game = {};
+var Game = {
+    mapCanvas: document.getElementById('map_canvas')
+};
 
 Game.run = function (context) {
     this.ctx = context;
@@ -18,6 +20,8 @@ Game.tick = function (elapsed) {
     delta = Math.min(delta, 0.25);
     this._previousElapsed = elapsed;
 
+    this.ctx.clearRect(0, 0, Game.mapCanvas.width, Game.mapCanvas.height);
+
     this.update(delta);
     this.render();
 }.bind(Game);
@@ -26,6 +30,6 @@ Game.update = function (delta) { };
 Game.render = function () { };
 
 window.onload = function () {
-    var context = document.getElementById('map_canvas').getContext('2d');
+    var context = Game.mapCanvas.getContext('2d');
     Game.run(context);
 }

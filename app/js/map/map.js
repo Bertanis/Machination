@@ -50,7 +50,7 @@ var tokenLayer = {
         };
     },
     removeToken: function (name) {
-        this.tokens[name] = null;
+        delete this.tokens[name];
     }
 };
 
