@@ -7,6 +7,12 @@ var map = {
         $('#map_canvas').attr('width', map.getWidth()).attr('height', map.getHeight());
         this._generateGridTiles();
     },
+    rowFromX(x) {
+        return Math.floor(x / this.tsize);
+    },
+    colFromY(y) {
+        return Math.floor(y / this.tsize);
+    },
     getGridTile: function (col, row) {
         return this.grid[row * map.size + col];
     },
@@ -36,6 +42,7 @@ var map = {
             }
         }
     }
+
 };
 
 var tokenLayer = {
@@ -61,18 +68,63 @@ var tokenLayer = {
     }
 };
 
+var arrows = {
+    NONE: -1,
+    START: 0,
+    S_RIGHT: 1,
+    S_LEFT: 2,
+    S_DOWN: 3,
+    S_UP: 4,
+    DR_CORNER: 5,
+    DL_CORNER: 6,
+    UL_CORNER: 7,
+    UR_CORNER: 8,
+    Y_THROUGH: 9,
+    X_THROUGH: 10,
+    END_RIGHT: 11,
+    END_LEFT: 12,
+    END_UP: 13,
+    END_DOWN: 14,
+    vertices: [],
+    lastPos: { x: -1, y: -1, type: -1 },
+    goto: function (x, y) {
+        if (y == -1 || y > map.size + 1 || x == -1 || x > map.size + 1) {
+
+        } else if (this.lastPos.type == this.NONE) {
+            var newPos = { row: y, col: x, type: this.START };
+            this.sections.push(newPos);
+            this.lastPos = newPos;
+        } else if (Math.abs(y - this.lastPos.row) > 1) {
+            console.error("Can't place next section more than one row away");
+        } else if (Math.abs(x - this.lastPos.col) > 1) {
+            console.error("Can't place next section more than one column away");
+        } else if (y > this.lastPos.row) {
+            var newPos = { row: y, col: x, type: this.END_UP };
+            this.sections[this.sections.length - 1];
+        }
+    },
+    isAbove: function (x1, y1, x2, y2) {
+
+    },
+    clear: function () {
+        this.sections = [];
+    }
+}
+
 map.resize(15);
 
 Game.load = function () {
     return [
         Loader.loadImage('gridTiles', './assets/tilesets/grid_tiles.png'),
-        Loader.loadImage('tokens', './assets/tilesets/test_tokens.png')
+        Loader.loadImage('tokens', './assets/tilesets/test_tokens.png'),
+        Loader.loadImage('arrows', './assets/tilesets/arrows.png')
     ];
 };
 
 Game.init = function () {
     this.gridAtlas = Loader.getImage('gridTiles');
     this.tokenAtlas = Loader.getImage('tokens');
+    this.arrowAtlas = Loader.getImage('arrows');
 };
 
 Game.update = function (delta) {
@@ -117,7 +169,24 @@ Game.drawTokens = function () {
     }
 }
 
+Game.drawArrow = function () {
+    for (var section in arrowLayer.sections) {
+        this.ctx.drawImage(
+            this.arrowAtlas,
+            (token.index - 1) * map.tsize,
+            0,
+            map.tsize,
+            map.tsize,
+            section.col * map.tsize,
+            section.row * map.tsize,
+            map.tsize,
+            map.tsize
+        );
+    }
+}
+
 Game.render = function () {
     this.drawGrid();
     this.drawTokens();
+    this.drawArrow();
 }
